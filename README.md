@@ -12,3 +12,5 @@
   http://localhost:3000/
 
  npm install --save multer
+
+ npx nest g resource arquivo
