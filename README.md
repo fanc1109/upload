@@ -14,3 +14,5 @@
  npm install --save multer
 
  npx nest g resource arquivo
+
+  npm install @types/multer
