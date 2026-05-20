@@ -14,31 +14,29 @@ export class ArquivoService {
   }
   //retorna os dados do arquivo após o upload
   create(arquivo: Express.Multer.File) {
-
-  // --- VALIDAÇÃO 1: RESTRIÇÃO DE TAMANHO (MÁX 5MB) ---
-    const limiteMaximo = 5 * 1024 * 1024; // 5MB em Bytes
+ //limite de 5 MB
+    const limiteMaximo = 5 * 1024 * 1024; // isso faz o computador saber se o arquivo tem 5 MB
     if (arquivo.size > limiteMaximo) {
-      // Bônus: Apaga o arquivo temporário salvo pelo Multer para não acumular lixo
+      // essa parte vai limpar o arquivo temporaria que o multer criou,o chat me sugerio essa parte 
       if (fs.existsSync(arquivo.path)) fs.unlinkSync(arquivo.path);
       
-      // Bônus/Tratamento: Retorna explicitamente o Status HTTP 413 (Payload Too Large)
+      //essa parte retorna para o cliente o erro 413 de forma explicada
       throw new PayloadTooLargeException('O arquivo enviado excede o limite permitido de 5MB.');
     }
 
-    // --- VALIDAÇÃO 2: FORMATO DO ARQUIVO (APENAS IMAGENS) ---
+    // forma de arquivo
     const extensoesPermitidas = ['.jpg', '.jpeg', '.png', '.tiff'];
-    // Extrai a extensão do nome original do arquivo e transforma em minúsculo
+    // pega o nome original e coloca tudo em minuscula
     const ext = arquivo.originalname.substring(arquivo.originalname.lastIndexOf('.')).toLowerCase();
 
     if (!extensoesPermitidas.includes(ext)) {
-      // Bônus: Apaga o arquivo inválido do disco
+      // essa parte limpa qual quer arquivo invalido do disco
       if (fs.existsSync(arquivo.path)) fs.unlinkSync(arquivo.path);
       
-      // Bônus/Tratamento: Retorna o Status HTTP 400 (Bad Request)
+      // essa parte retorna para o cliente o erro 400 de forma explicada
       throw new BadRequestException('Formato inválido. Apenas imagens JPG, JPEG, PNG e TIFF são permitidas.');
     }
 
-    // Se passar por todas as validações, retorna o sucesso original
     return {
       message: 'Arquivo enviado com sucesso!',
       __filename: arquivo.filename,
@@ -81,7 +79,7 @@ export class ArquivoService {
  remove(nome: string) {
     const caminhoArquivo = `${this.pastaUpload}/${nome}`;
 
-    // Fluxo/Bônus: Verifica se o arquivo realmente existe na pasta './drive'
+    // aqui verifica se o arquivo realmente existe na pasta './drive'
     if (!fs.existsSync(caminhoArquivo)) {
       // Tratamento: Retorna Status HTTP 404 Not Found caso o arquivo não exista
       throw new NotFoundException(`O arquivo com o nome "${nome}" não foi encontrado.`);
