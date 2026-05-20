@@ -45,6 +45,7 @@ Inicie o servidor em modo de desenvolvimento:
 ```bash
 npm run start:dev
 ```
+---
 A API estará ativa e escutando requisições em: http://localhost:3000
 
 🚀 Guia Prático de Endpoints e Testes
@@ -64,7 +65,7 @@ Parâmetros no Body:
 Chave (Key): file (lembre-se de mudar o tipo do campo de "Text" para "File" no seu cliente HTTP).
 
 Valor (Value): Selecione o arquivo de imagem do seu computador.
-
+---
 🟢 Resposta de Sucesso (HTTP 201 Created):
 Importante: Guarde o valor do campo __filename. Ele é o nome gerado pelo sistema que você usará para deletar o arquivo depois.
 
@@ -75,6 +76,7 @@ JSON
   "originalname": "foto-perfil.png",
   "size": 1048576
 }
+---
 🔴 Respostas de Erro:
 Tamanho Excedido (HTTP 413 Payload Too Large):
 
@@ -84,6 +86,7 @@ JSON
   "message": "O arquivo enviado excede o limite permitido de 5MB.",
   "error": "Payload Too Large"
 }
+---
 Formato Não Permitido (HTTP 400 Bad Request):
 
 JSON
@@ -92,6 +95,7 @@ JSON
   "message": "Formato inválido. Apenas imagens JPG, JPEG, PNG e TIFF são permitidas.",
   "error": "Bad Request"
 }
+---
 2. Listar Todos os Arquivos (GET)
 Varre a pasta de armazenamento e lista todos os arquivos salvos que passaram pelas validações.
 
@@ -100,7 +104,7 @@ Método: GET
 URL: http://localhost:3000/arquivo
 
 Tipo do Corpo (Body): Nenhum (none).
-
+---
 🟢 Resposta de Sucesso (HTTP 200 OK):
 JSON
 {
@@ -113,6 +117,8 @@ JSON
     }
   ]
 }
+---
+
 3. Excluir Arquivo por Nome (DELETE)
 Exclui o arquivo fisicamente do disco rígido do servidor usando o nome do parâmetro.
 
@@ -123,12 +129,13 @@ URL: http://localhost:3000/arquivo/:nome
 Exemplo real de uso: http://localhost:3000/arquivo/file-1716223456789-987654321.png
 
 Tipo do Corpo (Body): Nenhum (none).
-
+---
 🟢 Resposta de Sucesso (HTTP 200 OK):
 JSON
 {
   "message": "Arquivo \"file-1716223456789-987654321.png\" foi removido com sucesso do servidor."
 }
+---
 🔴 Resposta de Erro (HTTP 404 Not Found):
 Caso o nome do arquivo não exista no servidor:
 
