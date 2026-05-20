@@ -11,10 +11,10 @@ Antes de começar, você precisará ter o **Node.js** instalado em sua máquina.
 
 ### Histórico de Criação e Configuração (Comandos Globais):
 Caso precise configurar o ambiente NestJS do zero ou entender as dependências instaladas:
-```bash
 # Instalação global do CLI do NestJS
+```bash
 npx npm i -g @nestjs/common
-
+```
 # Criar um novo projeto (caso fosse do zero)
 npx nest new upload
 
