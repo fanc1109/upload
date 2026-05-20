@@ -16,27 +16,35 @@ Caso precise configurar o ambiente NestJS do zero ou entender as dependências i
 npx npm i -g @nestjs/common
 ```
 # Criar um novo projeto (caso fosse do zero)
+```bash
 npx nest new upload
-
+```
 # Entrar na pasta do projeto
+```bash
 cd .\upload\
-
+```
 # Instalação do Multer e seus tipos para TypeScript
+```bash
 npm install --save multer
+```
+```bash
 npm install @types/multer
-
+```
 # Gerar o recurso de arquivo (Controller, Service, Module)
+```bash
 npx nest g resource arquivo
-
+```
 Como Rodar o Projeto Atual Localmente:
 Instale as dependências locais listadas no projeto:
 
-Bash
+```bash
 npm install
+```
 Inicie o servidor em modo de desenvolvimento:
 
-Bash
+```bash
 npm run start:dev
+```
 A API estará ativa e escutando requisições em: http://localhost:3000
 
 🚀 Guia Prático de Endpoints e Testes
