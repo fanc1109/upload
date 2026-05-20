@@ -35,4 +35,6 @@ Antes de iniciar, garanta que você possui o **Node.js** (v18 ou superior) insta
    ```bash
    npm install
 3.Inicie o servidor em modo de desenvolvimento com o comando:
+ ```bash
+   npm run start
  
