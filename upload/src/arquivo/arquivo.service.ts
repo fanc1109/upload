@@ -81,7 +81,7 @@ export class ArquivoService {
 
     // aqui verifica se o arquivo realmente existe na pasta './drive'
     if (!fs.existsSync(caminhoArquivo)) {
-      // Tratamento: Retorna Status HTTP 404 Not Found caso o arquivo não exista
+      // aqui retorna para o cliente caso o arquivo não exista
       throw new NotFoundException(`O arquivo com o nome "${nome}" não foi encontrado.`);
     }
 
